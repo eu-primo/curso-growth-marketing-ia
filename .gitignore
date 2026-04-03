@@ -1,0 +1,45 @@
+# ============================================================
+# SEGURANCA: Credenciais e segredos
+# ============================================================
+.env
+.env.*
+!.env.example
+
+# Service accounts e chaves
+*-service-account.json
+google-services.json
+credentials*.json
+*.key
+*.pem
+*.p12
+
+# MCP config com tokens reais (use .mcp.json.example como referencia)
+.mcp.json
+
+# ============================================================
+# Sistema operacional
+# ============================================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ============================================================
+# Node.js
+# ============================================================
+node_modules/
+package-lock.json
+
+# ============================================================
+# Python (caso use scripts Python)
+# ============================================================
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ============================================================
+# Claude Code (config local)
+# ============================================================
+.claude/
