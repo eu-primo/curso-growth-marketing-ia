@@ -40,9 +40,10 @@ Conectar a API do Google Ads permite que o Claude Code consulte campanhas, metri
 
 1. Va em **Google Auth Platform > Clients**
 2. Clique **"Create Client"**
-3. Tipo: **"Desktop app"** (importante: Desktop, nao Web)
+3. Tipo: **"Web application"**
 4. Nomeie (ex: "Marketing CLI")
-5. Anote o **Client ID** e **Client Secret** gerados
+5. Em **Authorized redirect URIs**, adicione: `http://localhost:8080`
+6. Anote o **Client ID** e **Client Secret** gerados
 
 ### 4. Obter Developer Token
 
@@ -58,9 +59,15 @@ Esta e a parte mais tecnica, mas so precisa fazer uma vez:
 
 **Passo 5a: Gerar URL de autorizacao**
 
+**Opcao A: Usar o prompt pronto (recomendado)**
+
+Copie e cole o prompt do arquivo [prompts/google-ads-auth.md](../prompts/google-ads-auth.md) no Claude Code. Ele faz tudo automaticamente: gera a URL, troca o code pelo refresh token e salva no `.env`.
+
+**Opcao B: Fazer manualmente**
+
 Monte a URL substituindo `SEU_CLIENT_ID`:
 ```
-https://accounts.google.com/o/oauth2/v2/auth?client_id=SEU_CLIENT_ID&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&scope=https://www.googleapis.com/auth/adwords&access_type=offline&prompt=consent
+https://accounts.google.com/o/oauth2/v2/auth?client_id=SEU_CLIENT_ID&redirect_uri=http://localhost:8080&response_type=code&scope=https://www.googleapis.com/auth/adwords&access_type=offline&prompt=consent
 ```
 
 **Passo 5b: Autorizar**
@@ -68,24 +75,27 @@ https://accounts.google.com/o/oauth2/v2/auth?client_id=SEU_CLIENT_ID&redirect_ur
 2. Faca login com a conta que tem acesso ao Google Ads
 3. Se aparecer "App nao verificado", clique **Avancado > Acessar**
 4. Autorize as permissoes
-5. Copie o **codigo de autorizacao** que aparecer
+5. A pagina vai redirecionar para `http://localhost:8080?code=XXXXX` — a pagina vai dar erro (normal, nao tem servidor rodando)
+6. Copie o valor do parametro `code=` da barra de endereco do navegador
+
+> **IMPORTANTE:** O `code` que aparece na URL e o **authorization code** — ele NAO e o refresh token! Voce precisa troca-lo no proximo passo.
 
 **Passo 5c: Trocar codigo por refresh token**
 
 Voce pode pedir ao Claude Code para fazer isso! Com o .env parcialmente preenchido, diga:
 
 ```
-Usa o codigo de autorizacao "COLE_O_CODIGO_AQUI" para trocar por um refresh token do Google Ads OAuth2. Usa as credenciais GOOGLE_ADS_CLIENT_ID e GOOGLE_ADS_CLIENT_SECRET do .env.
+Usa o codigo de autorizacao "COLE_O_CODIGO_AQUI" para trocar por um refresh token do Google Ads OAuth2. Usa as credenciais GOOGLE_ADS_CLIENT_ID e GOOGLE_ADS_CLIENT_SECRET do .env. A redirect_uri e http://localhost:8080. Salva o refresh_token no .env.
 ```
 
 Ou faca manualmente via POST para `https://oauth2.googleapis.com/token` com:
 - `code`: o codigo de autorizacao
 - `client_id`: seu Client ID
 - `client_secret`: seu Client Secret
-- `redirect_uri`: `urn:ietf:wg:oauth:2.0:oob`
+- `redirect_uri`: `http://localhost:8080`
 - `grant_type`: `authorization_code`
 
-A resposta contera o `refresh_token`. Salve-o — ele nao expira!
+A resposta contera o `refresh_token`. Salve-o no `.env` — ele nao expira!
 
 ### 6. Encontrar o Customer ID
 

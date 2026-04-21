@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s https://api.github.com/repos/eu-primo/curso-growth-marketing-ia)",
+      "Bash(curl -s https://api.github.com/repos/eu-primo/curso-growth-marketing-ia/branches)",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ]
+  }
+}

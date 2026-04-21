@@ -7,10 +7,19 @@
     "test:sheets": "node scripts/test-sheets.js",
     "test:notion": "node scripts/test-notion.js"
   },
-  "keywords": ["marketing", "growth", "claude-code", "meta-ads", "google-ads", "ga4", "automation"],
+  "keywords": [
+    "marketing",
+    "growth",
+    "claude-code",
+    "meta-ads",
+    "google-ads",
+    "ga4",
+    "automation"
+  ],
   "author": "GrowthEx",
   "license": "MIT",
   "dependencies": {
+    "@google-analytics/data": "^5.2.1",
     "@notionhq/client": "^5.16.0",
     "dotenv": "^17.3.1",
     "google-ads-api": "^23.0.0",

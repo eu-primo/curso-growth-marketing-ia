@@ -1,52 +1,34 @@
-# Prompt para Terms of Service e Privacy Policy (Meta App)
+# Prompt: Terms of Service e Privacy Policy para Meta App
 
-Ao criar um app no Facebook Developers, voce precisa de URLs de Terms of Service e Privacy Policy. Use este prompt para gerar as paginas rapidamente.
+Ao criar um app no Facebook Developers, voce precisa de URLs de Terms of Service e Privacy Policy. Copie e cole o prompt abaixo no Claude Code — ele vai te guiar pelo processo.
 
 ---
 
-## Gerar ambos os documentos
+## Prompt (copie e cole no Claude Code)
 
 ```
-Preciso criar duas paginas simples para configurar meu app no Facebook Developers:
+Preciso gerar os textos de Terms of Service e Privacy Policy para configurar meu app no Facebook Developers (Meta Marketing API).
 
-1. Terms of Service (Termos de Uso)
-2. Privacy Policy (Politica de Privacidade)
+Antes de gerar, me pergunta:
 
-O app se chama "[NOME DO SEU APP]" e e usado para:
-- Acessar dados de campanhas de anuncios do Facebook/Instagram via Marketing API
-- Gerar relatorios de performance de marketing
+1. Qual o nome do app ou da empresa?
+2. Qual o email de contato?
+3. Onde voce vai publicar? As opcoes sao:
+   a) Notion — gero o texto em Markdown para voce colar numa pagina do Notion
+   b) Pagina web (HTML) — gero dois arquivos HTML prontos (terms-of-service.html e privacy-policy.html)
+   c) Pagina unica (HTML) — gero um unico arquivo HTML com as duas secoes juntas
+   d) Só o texto — mostro o texto aqui no chat para voce copiar e colar onde quiser
+
+Aguarda minhas respostas antes de gerar qualquer coisa.
+
+Depois de eu responder, gera os textos com essas regras:
+- Texto profissional e em ingles (requisito do Meta)
+- Uso do app: acessar dados de campanhas Facebook/Instagram via Marketing API para relatorios de performance de marketing
 - Uso interno / para clientes de gestao de trafego
-
-Gera dois arquivos HTML simples, profissionais e em ingles (requisito do Meta):
-- terms-of-service.html
-- privacy-policy.html
-
-Cada arquivo deve:
-- Ser standalone (abrir direto no navegador)
-- Ter layout limpo e profissional
 - Incluir as clausulas padrao necessarias para aprovacao do Meta
-- Ter placeholders para [NOME DA EMPRESA] e [EMAIL DE CONTATO]
-- Incluir data de "last updated"
+- Incluir data de "last updated" com a data de hoje
 
-Salva os dois arquivos neste projeto.
-```
+Se eu escolher Notion, mostra o texto em Markdown no chat e me orienta a criar a pagina no Notion, publicar com "Share to web" e colar a URL no app do Meta (Settings > Basic).
 
-**Apos gerar:**
-1. Substitua os placeholders pelo nome da sua empresa e email
-2. Hospede as paginas em algum lugar publico:
-   - **GitHub Pages** (gratis) — crie um repo, suba os HTMLs, ative Pages
-   - **Google Sites** — crie uma pagina e cole o conteudo
-   - **Notion** — crie uma pagina publica
-   - **Qualquer hospedagem** — suba os arquivos
-3. Cole as URLs no app do Meta (Settings > Basic > Terms of Service URL / Privacy Policy URL)
-
----
-
-## Alternativa: pagina unica
-
-```
-Gera uma unica pagina HTML que contenha tanto os Terms of Service
-quanto a Privacy Policy (em secoes separadas) para meu app do Meta.
-App: "[NOME DO APP]". Uso: acessar Marketing API para relatorios.
-Salva como legal.html.
+Se eu escolher HTML, salva os arquivos no projeto e me orienta a hospedar (GitHub Pages, Google Sites, etc).
 ```
